@@ -11,12 +11,13 @@ div {
 
 td {
     width: 2%;
+    height: 3%;
     /* cursor: pointer; */
-    font-size: 3vh;
+    font-size: 120%;
     /* border: 3px solid black; */
     /* border-radius: 6px; */
     text-align: center;
-    line-height: 115%;
+    line-height: 135%;
 }
 
 .texty {
@@ -57,4 +58,8 @@ input {
 
 label {
     font: 3vh 'comic sans ms';
+}
+
+button {
+    font: 2vh 'comic sans ms';
 }

@@ -374,20 +374,19 @@ inputEl.addEventListener('keydown', update)
 inputEl.addEventListener('keyup', update)
 inputEl.addEventListener('onchange', update)
 
+
+const copy = () => {
+    navigator.clipboard.writeText(outputEl.value)
+}
+
 const keys = []
 document.addEventListener('keydown', evt => {
     keys[evt.key] = true
+
+    if(keys['Control'] && keys['Shift'] && keys[' ']) copy()
 })
 document.addEventListener('keyup', evt => {
     keys[evt.key] = false
 })
 
-const loop = () => {
-    if(keys['Control'] && keys['Shift'] && keys[' ']) {
-        navigator.clipboard.writeText(outputEl.value)
-    }
-    
-
-    requestAnimationFrame(loop)
-}
-loop()
+document.getElementById('copy-button').onclick = copy
