@@ -348,9 +348,12 @@ for(const el of document.getElementsByTagName('td')) {
         el.style.cursor = 'pointer'
         if(!el.className) el.style.backgroundColor = 'white'
 
+        const char = el.accessKey || (el.innerHTML[el.innerHTML.length > 1 ? 1 : 0])
+        console.log(char)
+
         el.onclick = evt => {
             for(const [ key, value ] of mainMap)
-                if(value === el.innerHTML[el.innerHTML.length > 1 ? 1 : 0]) {
+                if(value === char) {
                     inputEl.value += key
                     return update()
                 }
