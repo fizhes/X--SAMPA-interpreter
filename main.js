@@ -378,8 +378,12 @@ inputEl.addEventListener('keyup', update)
 inputEl.addEventListener('onchange', update)
 
 
+const copyIndicator = document.getElementById('copy-indicator')
 const copy = () => {
     navigator.clipboard.writeText(outputEl.value)
+
+    copyIndicator.className = 'fadeinout'
+    setTimeout(_ => { copyIndicator.className = '' }, 2000)
 }
 
 const keys = []

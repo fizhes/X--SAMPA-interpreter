@@ -60,6 +60,21 @@ label {
     font: 3vh 'comic sans ms';
 }
 
-button {
+button, a {
     font: 2vh 'comic sans ms';
+}
+
+
+.fadeinout {
+    animation: fadeinout 1s linear forwards;
+    -webkit-animation: fadeinout 1s linear forwards;
+}
+
+@keyframes fadeinout {
+    15% { opacity: 1; }
+    0%, 100% { opacity: 0; }
+}
+@-webkit-keyframes fadeinout {
+    15% { opacity: 1; }
+    0%, 100% { opacity: 0; }
 }
