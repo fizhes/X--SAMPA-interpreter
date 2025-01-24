@@ -29,6 +29,22 @@ const aliasMap = [
     [ "=\\\\", "\u029e" ],
     [ "!\\`\\", "\u03c8" ], 
     [ "O\\\\", "\u024B" ], 
+    [ "n\\", "\u0272" ],
+    [ "+u\\", "\u1db6" ],
+    [ "+?\\", "\u02e4" ],
+    [ "+j", "\u02b2" ],
+    [ "+G", "\u02e0" ],
+    [ "+n", "\u207f" ],
+    [ "+l", "\u02e1" ],
+    [ "+i\\", "\u1da4" ],
+    [ "+f\\", "\u1da1" ],
+    [ "+h", "\u02b0" ],
+    [ "+m\\", "\u1dac" ],
+    [ "+w", "\u02b7" ],
+    [ "y\\", "\u028e" ],
+    [ "+v\\", "\u1db9" ],
+    [ "+n\\", "\u1dae" ],
+    
 ]
 
 const mainMap = [
@@ -261,21 +277,16 @@ const mainMap = [
     [ "_w\\", "\u032B" ],
     [ "_j\\", "\u0321" ],
     [ "+r\\`", "\u02b5" ],
-    [ "+i\\", "\u1da4" ],
-    [ "+u\\", "\u1db6" ],
     [ "+I\\", "\u1da7" ],
     [ "+I\\\\", "\u1DA5" ],
     [ "+n`", "\u1daf" ],
     [ "+N\\", "\u1db0" ],
     [ "+J\\", "\u1da1" ],
-    [ "+f\\", "\u1da1" ],
     [ "+p\\", "\u1db2" ],
     [ "+s`", "\u1db3" ],
     [ "+z`", "\u1dbc" ],
     [ "+j\\", "\u1da8" ],
-    [ "+?\\", "\u02e4" ],
-    [ "+h\\", "\u02b1" ],
-    [ "+v\\", "\u1db9" ],
+    [ "+P", "\u1db9" ],
     [ "+r\\", "\u02b4" ],
     [ "+M\\", "\u1dad" ],
     [ "+l`", "\u1da9" ],
@@ -304,7 +315,6 @@ const mainMap = [
     [ "+a", "\u1d43" ],
     [ "+m", "\u1d50" ],
     [ "+F", "\u1dac" ],
-    [ "+n", "\u207f" ],
     [ "+J", "\u1dae" ],
     [ "+N", "\u1d51" ],
     [ "+p", "\u1d56" ],
@@ -324,24 +334,28 @@ const mainMap = [
     [ "+S", "\u1db4" ],
     [ "+Z", "\u1dbe" ],
     [ "+x", "\u02e3" ],
-    [ "+G", "\u02e0" ],
     [ "+X", "\u1d61" ],
-    [ "+h", "\u02b0" ],
-    [ "+j", "\u02b2" ],
     [ "+H", "\u1da3" ],
-    [ "+w", "\u02b7" ],
     [ "+r", "\u02b3" ],
-    [ "+l", "\u02e1" ],
     [ "+5", "\uab5e" ],
-    [ "+m\\", "\u1dac" ],
-    [ "!\\`\\\\", String.fromCharCode(0x01DF0A) ],
+    // [ "!\\`\\\\", "\ud837" ],
+    [ "+h\\", "\u02b1" ],
 ]
 
 const letterMap = [ ...aliasMap, ...mainMap ].sort(
     (a, b) => (b[0].length - a[0].length)
 )
 
-for(const el of document.getElementsByTagName('td')) {
+const afterMap = [
+    [ "+\\", "+" ],
+    [ "\u02cc\\", "%" ],
+    [ "\u035c\\", "(" ],
+    [ "\u0361\\", ")" ],
+    [ "\u00e6\\", "{" ],
+    [ "\u0289\\", "}" ],
+]
+
+for(const el of document.getElementById('buttons').getElementsByTagName('td')) {
     if(el.innerHTML !== '') {
         el.style.border = '3px solid black'
         el.style.borderRadius = '6px'
@@ -349,7 +363,6 @@ for(const el of document.getElementsByTagName('td')) {
         if(!el.className) el.style.backgroundColor = 'white'
 
         const char = el.accessKey || (el.innerHTML[el.innerHTML.length > 1 ? 1 : 0])
-        console.log(char)
 
         el.onclick = evt => {
             for(const [ key, value ] of mainMap)
@@ -357,6 +370,9 @@ for(const el of document.getElementsByTagName('td')) {
                     inputEl.value += key
                     return update()
                 }
+            
+            inputEl.value += el.accessKey
+            return update()
         }
     }
 }
@@ -365,6 +381,9 @@ const update = evt => {
     let output = inputEl.value
 
     for(const [ key, value ] of letterMap) {
+        output = output.replaceAll(key, value)
+    }
+    for(const [ key, value ] of afterMap) {
         output = output.replaceAll(key, value)
     }
 
@@ -391,9 +410,38 @@ document.addEventListener('keydown', evt => {
     keys[evt.key] = true
 
     if(keys['Control'] && keys['Shift'] && keys[' ']) copy()
+
+    if(evt.key === 'Escape') aboutMenu.style.visibility = 'hidden'
 })
 document.addEventListener('keyup', evt => {
     keys[evt.key] = false
 })
 
 document.getElementById('copy-button').onclick = copy
+
+
+const aboutMenu = document.getElementById('about')
+document.getElementById('about-button').onclick = evt => {
+    if(aboutMenu.style.visibility === 'hidden')
+        aboutMenu.style.visibility = ''
+    else
+        aboutMenu.style.visibility = 'hidden'
+}
+
+document.getElementById('close-about').onclick = evt => {
+    aboutMenu.style.visibility = 'hidden'
+}
+
+document.getElementById('transcribe').onchange = evt => {
+    [
+        document.getElementById('transcribe-label'),
+        ...document.getElementById('about').getElementsByTagName('p'),
+        document.getElementById('additional-notes'),
+        ...document.getElementById('about').getElementsByTagName('th'),
+        document.getElementById('close-about'),
+    ].forEach(el => {
+        const innerHTML = el.innerHTML
+        el.innerHTML = el.accessKey
+        el.accessKey = innerHTML
+    })
+}

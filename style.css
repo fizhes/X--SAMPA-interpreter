@@ -78,3 +78,39 @@ button, a {
     15% { opacity: 1; }
     0%, 100% { opacity: 0; }
 }
+
+.SAMPA {
+    font-family: Consolas, monospace;
+    border: 1px solid black;
+    font-weight: normal;
+}
+.IPA {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#aliases-table, #weird-table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin: auto;
+    width: 75%;
+}
+
+#aliases-table th {
+    border: 1px solid black;
+}
+#aliases-table td {
+    border: 1px solid black;
+    background-color: #0000;
+}
+
+#weird-table th {
+    border: 1px solid black;
+}
+#weird-table td {
+    border: 1px solid black;
+    background-color: #0000;
+}
