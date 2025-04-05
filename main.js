@@ -44,6 +44,8 @@ const aliasMap = [
     [ "e\\", "\u1d07" ],
     [ "~", "\u0303" ],
     [ ")", "\u0361" ],
+    [ "E\\\\", "\u2c7b"],
+    [ "V\\", "\u2c7b"],
 ]
 
 const mainMap = [
@@ -361,6 +363,7 @@ const mainMap = [
     [ "_~", "\u0303" ],
     [ "_=", "\u0329" ],
     [ "_d\\\\", "\u032a\u0346" ],
+    [ "7\\", "\u2c7b"],
 ]
 
 const letterMap = [ ...aliasMap, ...mainMap ].sort(
@@ -424,7 +427,7 @@ const copy = () => {
     navigator.clipboard.writeText(outputEl.value)
 
     copyIndicator.className = 'fadeinout'
-    setTimeout(_ => { copyIndicator.className = '' }, 2000)
+    setTimeout(() => { copyIndicator.className = '' }, 2000)
 }
 
 const keys = []
@@ -441,29 +444,3 @@ document.addEventListener('keyup', evt => {
 
 document.getElementById('copy-button').onclick = copy
 
-
-const aboutMenu = document.getElementById('about')
-document.getElementById('about-button').onclick = evt => {
-    if(aboutMenu.style.visibility === 'hidden')
-        aboutMenu.style.visibility = ''
-    else
-        aboutMenu.style.visibility = 'hidden'
-}
-
-document.getElementById('close-about').onclick = evt => {
-    aboutMenu.style.visibility = 'hidden'
-}
-
-document.getElementById('transcribe').onchange = evt => {
-    [
-        document.getElementById('transcribe-label'),
-        ...document.getElementById('about').getElementsByTagName('p'),
-        document.getElementById('additional-notes'),
-        ...document.getElementById('about').getElementsByTagName('th'),
-        document.getElementById('close-about'),
-    ].forEach(el => {
-        const innerHTML = el.innerHTML
-        el.innerHTML = el.accessKey
-        el.accessKey = innerHTML
-    })
-}
