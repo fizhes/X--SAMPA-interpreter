@@ -46,6 +46,7 @@ const aliasMap = [
     [ ")", "\u0361" ],
     [ "E\\\\", "\u2c7b"],
     [ "V\\", "\u2c7b"],
+    [ "=", "\u0329" ],
 ]
 
 const mainMap = [
@@ -363,7 +364,9 @@ const mainMap = [
     [ "_~", "\u0303" ],
     [ "_=", "\u0329" ],
     [ "_d\\\\", "\u032a\u0346" ],
-    [ "7\\", "\u2c7b"],
+    [ "7\\", "\u2c7b" ],
+    [ "T\\", "\u00fe" ],
+    [ "D\\", "\u03b4" ],
 ]
 
 const letterMap = [ ...aliasMap, ...mainMap ].sort(
