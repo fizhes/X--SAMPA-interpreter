@@ -367,6 +367,9 @@ const mainMap = [
     [ "7\\", "\u2c7b" ],
     [ "T\\", "\u00fe" ],
     [ "D\\", "\u03b4" ],
+    [ "_A\\", "\uAB6A" ],
+    [ "_q\\", "\uAB6B" ],
+    [ "5\\", "\u0142" ],
 ]
 
 const letterMap = [ ...aliasMap, ...mainMap ].sort(
@@ -446,4 +449,9 @@ document.addEventListener('keyup', evt => {
 })
 
 document.getElementById('copy-button').onclick = copy
+
+document.getElementById('clear-button').onclick = function(evt) {
+    inputEl.value = ''
+    outputEl.value = ''
+}
 
