@@ -47,6 +47,12 @@ const aliasMap = [
     [ "E\\\\", "\u2c7b"],
     [ "V\\", "\u2c7b"],
     [ "=", "\u0329" ],
+    [ "t*K\\", "\u03BB" ],
+    [ "r\\`\\", "\u0285" ],
+    [ "r\\_w\\", "\u02ae" ],
+    [ "r\\`\\_w", "\u02af" ],
+    [ "r\\\\`_w", "\u02af" ],
+    [ "r\\_w\\`", "\u02af" ],
 ]
 
 const mainMap = [
@@ -351,6 +357,7 @@ const mainMap = [
     [ "+5", "\uab5e" ],
     // [ "!\\`\\\\", "\ud837" ],
     [ "+h\\", "\u02b1" ],
+    [ "+g\\", "\u1d4d" ],
     [ "d*z", "\u02A3" ],
     [ "d*Z", "\u02A4" ],
     [ "d*z\\", "\u02A5" ],
@@ -358,7 +365,7 @@ const mainMap = [
     [ "t*S", "\u02A7" ],
     [ "t*s\\", "\u02A8" ],
     [ "t*K", "\u019B" ],
-    [ "t*K\\", "\u03BB" ],
+    [ "d*K\\", "\u03BB" ],
     [ "E\\", "\u1d07" ],
     [ "o\\", "\uab65" ],
     [ "_~", "\u0303" ],
@@ -370,6 +377,10 @@ const mainMap = [
     [ "_A\\", "\uAB6A" ],
     [ "_q\\", "\uAB6B" ],
     [ "5\\", "\u0142" ],
+    [ "r\\\\", "\u027f" ],
+    [ "r\\\\`", "\u0285" ],
+    [ "r\\\\_w", "\u02ae" ],
+    [ "r\\\\_w`", "\u02af" ],
 ]
 
 const letterMap = [ ...aliasMap, ...mainMap ].sort(
@@ -384,6 +395,7 @@ const afterMap = [
     [ "\u00e6\\", "{" ],
     [ "\u0289\\", "}" ],
     [ "\u0261\\", "g" ],
+    [ "\u0303\\", "~" ],
 ]
 
 for(const el of document.getElementById('buttons').getElementsByTagName('td')) {
